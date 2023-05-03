@@ -24,6 +24,11 @@ M.blankline = {
 
 M.luasnip = function(opts)
   require("luasnip").config.set_config(opts)
+  require("luasnip").env_namespace("LUA", {
+    vars = vim.g.snippet_vars or {},
+  })
+  require("luasnip").env_namespace("LSP", {init=function(info) return {VAL=vim.inspect(info)} end})
+
 
   -- vscode format
   require("luasnip.loaders.from_vscode").lazy_load()
