@@ -37,6 +37,7 @@ M.capabilities.textDocument.completion.completionItem = {
       "documentation",
       "detail",
       "additionalTextEdits",
+      "quickfix"
     },
   },
 }

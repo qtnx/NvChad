@@ -48,8 +48,23 @@ local options = {
       n = { ["q"] = require("telescope.actions").close },
     },
   },
+  pickers = {
+    buffers = {
+      sort_lastused = true,
+      ignore_current_buffer = true,
+      mappings = {
+        i = {
+          ["<c-d>"] = require("telescope.actions").delete_buffer,
+        },
+        n = {
+          ["<c-d>"] = require("telescope.actions").delete_buffer,
+          ["<d>"] = require("telescope.actions").delete_buffer,
+        },
+      },
+    },
+  },
 
-  extensions_list = { "themes", "terms" },
+  extensions_list = { "themes", "terms", "lazygit" }, -- "emoji", "dap"
 }
 
 return options
