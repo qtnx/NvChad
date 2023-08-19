@@ -15,8 +15,8 @@ local formatting_style = {
   -- default fields order i.e completion word + item.kind + item.kind icons
   fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
 
-  format = function(entry, item)
-    local icons = require("nvchad_ui.icons").lspkind
+  format = function(_, item)
+    local icons = require "nvchad.icons.lspkind"
     local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
     if cmp_style == "atom" or cmp_style == "atom_colored" then
@@ -91,8 +91,8 @@ local options = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
