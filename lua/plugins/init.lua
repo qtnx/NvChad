@@ -85,6 +85,9 @@ local default_plugins = {
       dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup(opts)
     end,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
   },
 
   -- git stuff
