@@ -15,7 +15,7 @@ local formatting_style = {
   -- default fields order i.e completion word + item.kind + item.kind icons
   fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
 
-  format = function(_, item)
+  format = function(entry, item)
     local icons = require "nvchad.icons.lspkind"
     local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
@@ -30,7 +30,7 @@ local formatting_style = {
 
     if entry.source.name == "cmp_tabnine" then
       local detail = (entry.completion_item.data or {}).detail
-      item.kind = "TN"
+      item.kind = ""
       if detail and detail:find('.*%%.*') then
         item.kind = item.kind .. ' ' .. detail
       end
