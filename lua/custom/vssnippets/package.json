@@ -1,0 +1,29 @@
+{
+	"name": "custom-snippets-vs-code-like",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"solidity"
+				],
+				"path": "./snippets/solidity.json"
+			},
+      {
+				"language": [
+					"typescript",
+          "javascript",
+          "typescriptreact",
+          "tsx"
+				],
+				"path": "./snippets/typescript.json"
+			},
+      {
+        "language": [
+          "go"
+        ],
+
+				"path": "./snippets/go.json"
+      }
+		]
+	}
+}
