@@ -1,0 +1,12 @@
+{
+  "console_log": {
+    "prefix": "console",
+    "body": "console.log(\"${TM_FILENAME}:${TM_LINE_NUMBER}\" $1);",
+    "description": "Log a message to the console, with file name and function."
+  },
+  "export_const": {
+    "prefix": "expc",
+    "body": "export const ${1} = ($2) => {\n\t$3\n}",
+    "description": "Export a constant function."
+  }
+}

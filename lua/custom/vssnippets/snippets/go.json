@@ -1,0 +1,32 @@
+{
+  "service": {
+    "prefix": "mol",
+    "body": "type ${1}Model struct {\ngorm.Model\n${2}\n}",
+    "description": "Create gorm model"
+  },
+  "entity": {
+    "prefix": "ent",
+    "body": "package ${1}_entities\n\ntype ${1}Entity struct {\n${2}\n}",
+    "description": "Create entity"
+  },
+  "repository": {
+    "prefix": "repo",
+    "body": "package ${1}_repositories\n\nimport \"${2}\"\n\ntype ${1}Repository struct {\n${3}\n}",
+    "description": "Create repository"
+  },
+  "usecase": {
+    "prefix": "use",
+    "body": "package ${1}_usecases\n\nimport \"${2}\"\n\ntype ${1}Usecase struct {\n${3}\n}",
+    "description": "Create usecase"
+  },
+  "dto": {
+    "prefix": "dto",
+    "body": "type ${1}DTO struct {\n${2}\n}",
+    "description": "Create dto"
+  },
+  "iferr": {
+    "prefix": "iferr",
+    "body": "if err := ${1}; err != nil {\n\treturn err\n}",
+    "description": "If with error checking"
+  }
+}

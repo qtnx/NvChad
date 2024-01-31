@@ -1,5 +1,5 @@
 local cmp = require "cmp"
-local compare = require('cmp.config.compare')
+local compare = require "cmp.config.compare"
 
 dofile(vim.g.base46_cache .. "cmp")
 
@@ -31,12 +31,12 @@ local formatting_style = {
     if entry.source.name == "cmp_tabnine" then
       local detail = (entry.completion_item.data or {}).detail
       item.kind = ""
-      if detail and detail:find('.*%%.*') then
-        item.kind = item.kind .. ' ' .. detail
+      if detail and detail:find ".*%%.*" then
+        item.kind = item.kind .. " " .. detail
       end
 
       if (entry.completion_item.data or {}).multiline then
-        item.kind = item.kind .. ' ' .. '[ML]'
+        item.kind = item.kind .. " " .. "[ML]"
       end
     end
     local maxwidth = 80
@@ -125,13 +125,13 @@ local options = {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = 'copilot'},
-    { name = 'cmp_tabnine'},
+    -- { name = "copilot" },
+    { name = "cmp_tabnine" },
   },
   sorting = {
     priority_weight = 2,
     comparators = {
-      require("copilot_cmp.comparators").prioritize,
+      -- require("copilot_cmp.comparators").prioritize,
       compare.offset,
       compare.exact,
       compare.score,
@@ -140,7 +140,7 @@ local options = {
       compare.sort_text,
       compare.length,
       compare.order,
-      require('cmp_tabnine.compare'),
+      require "cmp_tabnine.compare",
     },
   },
 }

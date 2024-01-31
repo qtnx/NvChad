@@ -89,6 +89,25 @@ local default_plugins = {
   {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
+    ft = { "gitcommit", "diff" },
+    init = function()
+      -- load gitsigns only when a git file is opened
+      vim.api.nvim_create_autocmd({ "BufRead" }, {
+        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
+        callback = function()
+          vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" }, {
+            on_exit = function(_, return_code)
+              if return_code == 0 then
+                vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
+                vim.schedule(function()
+                  require("lazy").load { plugins = { "gitsigns.nvim" } }
+                end)
+              end
+            end,
+          })
+        end,
+      })
+    end,
     opts = function()
       return require("plugins.configs.others").gitsigns
     end,
@@ -254,3 +273,20 @@ if #config.plugins > 0 then
 end
 
 require("lazy").setup(default_plugins, config.lazy_nvim)
+
+-- require("gp").setup {
+--   hook = {
+--     Test = function()
+--       print "Test hook"
+--     end,
+--   },
+-- }
+
+-- _G.ff = function()
+--   local text = get_visual_selection()
+--   print(text)
+--   local fn = find_nearest_tested_function_name()
+--   print(fn)
+--   local content = get_function_content(fn)
+--   print(content)
+-- end
