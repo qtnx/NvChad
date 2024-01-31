@@ -31,9 +31,7 @@ local default_plugins = {
 
   {
     "NvChad/nvim-colorizer.lua",
-    init = function()
-      require("core.utils").lazy_load "nvim-colorizer.lua"
-    end,
+    event = "User FilePost",
     config = function(_, opts)
       require("colorizer").setup(opts)
 
@@ -58,9 +56,7 @@ local default_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.7",
-    init = function()
-      require("core.utils").lazy_load "indent-blankline.nvim"
-    end,
+    event = "User FilePost",
     opts = function()
       return require("plugins.configs.others").blankline
     end,
@@ -73,10 +69,8 @@ local default_plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
     tag = "v0.9.2",
-    init = function()
-      require("core.utils").lazy_load "nvim-treesitter"
-    end,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
@@ -94,6 +88,7 @@ local default_plugins = {
   -- git stuff
   {
     "lewis6991/gitsigns.nvim",
+    event = "User FilePost",
     ft = { "gitcommit", "diff" },
     init = function()
       -- load gitsigns only when a git file is opened
@@ -146,9 +141,7 @@ local default_plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      require("core.utils").lazy_load "nvim-lspconfig"
-    end,
+    event = "User FilePost",
     config = function()
       require "plugins.configs.lspconfig"
     end,
